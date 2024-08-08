@@ -5,12 +5,13 @@ import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 //modules
 import { UsersModule } from '../users/users.module';
+import { AuthModule } from '../auth/auth.module';
 //models
 import { User } from '../users/entities/user.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DATABASE_HOST,
@@ -22,6 +23,7 @@ import { User } from '../users/entities/user.entity';
       synchronize: true,
       models: [User],
     }),
+    AuthModule,
     UsersModule,
   ],
   controllers: [AppController],

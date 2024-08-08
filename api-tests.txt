@@ -1,0 +1,41 @@
+--FÍSICA
+
+{
+  "name": "júnior",
+  "lastName": "sanchez",
+  "email": "sanchez@gmail.com",
+  "password": "121235512",
+  "role_id": 1,
+  "telephone": "123154124",
+  "cell_phone": "123123",
+  "user_type": "física",
+  "date_of_birth": "02/02/2004",
+  "sex":"Masculino",
+  "rg":"12312313",
+  "cpf": "123123123"
+}
+
+-- JÚRIDICA
+
+{
+  "name": "júnior",
+  "lastName": "sanchez",
+  "email": "sanchez@gmail.com",
+  "password": "121235512",
+  "role_id": 1,
+  "telephone": "123154124",
+  "cell_phone": "123123",
+  "user_type": "júridica",
+  "cnpj": "12031293",
+  "company_name": "sites",
+  "contact_name": "junior"
+}
+
+
+
+-- login
+
+{
+    "email": "sanchez@gmail.com",
+    "password": "121235512"
+}

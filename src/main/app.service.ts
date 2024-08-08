@@ -6,7 +6,7 @@ export class AppService {
     return {
       message: 'Welcome to our API',
       version: '1.0.0',
-      documentation: 'https://example.com/api-docs',
+      documentation: 'https://localhost/api-docs',
     };
   }
 }

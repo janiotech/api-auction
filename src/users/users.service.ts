@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateUserjDto } from './dto/create-user-j.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserJDto } from './dto/update-user-j.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -70,15 +71,40 @@ export class UsersService {
     return this.userModel.findAll();
   }
 
-  async findOne(email: string) {
-    const emailAlreadyExists = await this.userModel.findOne({
-      where: { email: email },
+  async findOne(id: string) {
+    const IdAlreadyExists = await this.userModel.findOne({
+      where: { id: id },
     });
-    return emailAlreadyExists;
+    if (IdAlreadyExists.user_type === 'física') {
+      return this.getPhysicalUser(IdAlreadyExists);
+    } else {
+      return this.getLegalUser(IdAlreadyExists);
+    }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto | UpdateUserJDto) {
+    const SearchUserById = await this.userModel.findByPk(id);
+    if (!SearchUserById) {
+      throw new HttpException(
+        'Esse id não existe no banco de dados',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    console.log(updateUserDto.password);
+    if (
+      updateUserDto.password ||
+      updateUserDto.role ||
+      updateUserDto.user_type
+    ) {
+      throw new HttpException(
+        'Alguns campos passados são inválidos',
+        HttpStatus.PRECONDITION_FAILED,
+      );
+    } else {
+      await SearchUserById.update(updateUserDto);
+      HttpStatus.OK;
+      return SearchUserById;
+    }
   }
 
   remove(id: number) {
@@ -131,7 +157,24 @@ export class UsersService {
       name: dto.name,
       lastName: dto.lastName,
       email: dto.email,
+      role: dto.role,
       password: dto.password,
+      telephone: dto.telephone,
+      cell_phone: dto.cell_phone,
+      user_type: 'física',
+      date_of_birth: dto.date_of_birth,
+      sex: dto.sex,
+      rg: dto.rg,
+      cpf: dto.cpf,
+    };
+  }
+
+  private getPhysicalUser(dto: any) {
+    return {
+      name: dto.name,
+      lastName: dto.lastName,
+      email: dto.email,
+      role: dto.role,
       telephone: dto.telephone,
       cell_phone: dto.cell_phone,
       user_type: 'física',
@@ -148,6 +191,20 @@ export class UsersService {
       lastName: dto.lastName,
       email: dto.email,
       password: dto.password,
+      telephone: dto.telephone,
+      cell_phone: dto.cell_phone,
+      user_type: 'júridica',
+      cnpj: dto.cnpj,
+      company_name: dto.company_name,
+      contact_name: dto.contact_name,
+    };
+  }
+
+  private getLegalUser(dto: any) {
+    return {
+      name: dto.name,
+      lastName: dto.lastName,
+      email: dto.email,
       telephone: dto.telephone,
       cell_phone: dto.cell_phone,
       user_type: 'júridica',
@@ -182,6 +239,27 @@ export class UsersService {
       where: { email: email },
     });
     return userWithEmail;
+  }
+
+  async findOneId(id: string) {
+    const UserExist = await this.userModel.findOne({
+      where: { id: id },
+    });
+    console.log(UserExist);
+    if (UserExist) {
+      if (UserExist.user_type === 'física') {
+        HttpStatus.OK;
+        return this.getPhysicalUser(UserExist);
+      } else {
+        HttpStatus.OK;
+        return this.getLegalUser(UserExist);
+      }
+    } else {
+      throw new HttpException(
+        'Esse id não existe no banco de dados',
+        HttpStatus.NOT_FOUND,
+      );
+    }
   }
 
   async compareHashPasswordAndEmail(email: string, password: string) {

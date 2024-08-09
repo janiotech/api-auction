@@ -5,7 +5,6 @@
   "lastName": "sanchez",
   "email": "sanchez@gmail.com",
   "password": "121235512",
-  "role_id": 1,
   "telephone": "123154124",
   "cell_phone": "123123",
   "user_type": "física",
@@ -22,7 +21,6 @@
   "lastName": "sanchez",
   "email": "sanchez@gmail.com",
   "password": "121235512",
-  "role_id": 1,
   "telephone": "123154124",
   "cell_phone": "123123",
   "user_type": "júridica",
@@ -37,5 +35,11 @@
 
 {
     "email": "sanchez@gmail.com",
+    "password": "121235512"
+}
+
+
+{
+    "email": "george@gmail.com",
     "password": "121235512"
 }

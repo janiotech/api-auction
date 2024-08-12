@@ -1,4 +1,4 @@
-import { Column, Model, Table, Default } from 'sequelize-typescript';
+import { Column, Model, Table, Default, HasMany } from 'sequelize-typescript';
 
 @Table
 export class User extends Model {
@@ -54,4 +54,7 @@ export class User extends Model {
   @Default(null)
   @Column
   contact_name?: string | null;
+
+  @HasMany(() => Address)
+  addresses: Address[];
 }

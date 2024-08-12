@@ -107,8 +107,17 @@ export class UsersService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const SearchUserById = await this.userModel.findByPk(id);
+    if (!SearchUserById) {
+      throw new HttpException(
+        'Esse id não existe no banco de dados',
+        HttpStatus.NOT_FOUND,
+      );
+    } else {
+      await SearchUserById.destroy();
+      throw new HttpException('Usuário deletado com sucesso!', HttpStatus.OK);
+    }
   }
 
   private async findAndress(cep: number) {
@@ -157,7 +166,6 @@ export class UsersService {
       name: dto.name,
       lastName: dto.lastName,
       email: dto.email,
-      role: dto.role,
       password: dto.password,
       telephone: dto.telephone,
       cell_phone: dto.cell_phone,

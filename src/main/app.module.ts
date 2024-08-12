@@ -6,8 +6,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 //modules
 import { UsersModule } from '../users/users.module';
 import { AuthModule } from '../auth/auth.module';
+import { RolesModule } from '../roles/roles.module';
 //models
 import { User } from '../users/entities/user.entity';
+import { Role } from '../roles/entities/role.entity';
 
 @Module({
   imports: [
@@ -21,10 +23,11 @@ import { User } from '../users/entities/user.entity';
       database: 'auction',
       autoLoadModels: true,
       synchronize: true,
-      models: [User],
+      models: [User, Role],
     }),
     AuthModule,
     UsersModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

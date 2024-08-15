@@ -38,5 +38,7 @@ $ npm run start:prod
 
 ```bash
 # gera um token para um usuário cadastrado do banco de dados
-/users/
+/users/ -- POST
+# gera um token para um usuário cadastrado do banco de dados
+/users/ -- GET
 ```

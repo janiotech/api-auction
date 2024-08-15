@@ -2,9 +2,9 @@
   <img src="https://cdn-icons-png.flaticon.com/512/3366/3366050.png" width="200" alt="Nest Logo" />
 </p>
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) Api completa para leilões.
+Api completa para leilões.
 
 ## Installation
 

@@ -1,4 +1,5 @@
 import { Column, Model, Table, Default, HasMany } from 'sequelize-typescript';
+import { Address } from 'src/addresses/entities/address.entity';
 
 @Table
 export class User extends Model {

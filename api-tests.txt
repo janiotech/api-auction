@@ -17,9 +17,9 @@
 -- JÚRIDICA
 
 {
-  "name": "júnior",
-  "lastName": "sanchez",
-  "email": "sanchez@gmail.com",
+  "name": "Marcos",
+  "lastName": "Santos",
+  "email": "marcos@gmail.com",
   "password": "121235512",
   "telephone": "123154124",
   "cell_phone": "123123",
@@ -42,4 +42,18 @@
 {
     "email": "george@gmail.com",
     "password": "121235512"
+}
+
+
+-- Endereço Admin
+
+{
+  "street": "Rua 179",
+  "number": "Número 183",
+  "complement": "Casa",
+  "district": "albano franco",
+  "state": "sergipe",
+  "city": "nossa senhora do socorro",
+  "cep": "49160000",
+  "userId": 1
 }

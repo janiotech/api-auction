@@ -7,6 +7,7 @@ import { CreateUserjDto } from './dto/create-user-j.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UpdateUserJDto } from './dto/update-user-j.dto';
 import * as bcrypt from 'bcrypt';
+import { Address } from '../addresses/entities/address.entity';
 
 @Injectable()
 export class UsersService {
@@ -90,7 +91,6 @@ export class UsersService {
         HttpStatus.NOT_FOUND,
       );
     }
-    console.log(updateUserDto.password);
     if (
       updateUserDto.password ||
       updateUserDto.role ||
@@ -177,7 +177,7 @@ export class UsersService {
     };
   }
 
-  private getPhysicalUser(dto: any) {
+  private async getPhysicalUser(dto: any) {
     return {
       name: dto.name,
       lastName: dto.lastName,
@@ -190,6 +190,7 @@ export class UsersService {
       sex: dto.sex,
       rg: dto.rg,
       cpf: dto.cpf,
+      addresses: await this.findOneAddress(dto.id),
     };
   }
 
@@ -208,8 +209,9 @@ export class UsersService {
     };
   }
 
-  private getLegalUser(dto: any) {
+  private async getLegalUser(dto: any) {
     return {
+      id: dto.id,
       name: dto.name,
       lastName: dto.lastName,
       email: dto.email,
@@ -219,6 +221,7 @@ export class UsersService {
       cnpj: dto.cnpj,
       company_name: dto.company_name,
       contact_name: dto.contact_name,
+      addresses: await this.findOneAddress(dto.id),
     };
   }
 
@@ -249,18 +252,38 @@ export class UsersService {
     return userWithEmail;
   }
 
+  async findOneAddress(id: string) {
+    const UserExist = await this.userModel.findOne({
+      where: { id: id },
+    });
+    if (UserExist) {
+      const UserAddress = await this.userModel
+        .findOne({ where: { id: id }, include: [Address] })
+        .then((user) => {
+          return user.addresses.map((item) => {
+            return item.dataValues;
+          });
+        });
+      return UserAddress;
+    } else {
+      throw new HttpException(
+        'Esse id não existe no banco de dados',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+  }
+
   async findOneId(id: string) {
     const UserExist = await this.userModel.findOne({
       where: { id: id },
     });
-    console.log(UserExist);
     if (UserExist) {
       if (UserExist.user_type === 'física') {
         HttpStatus.OK;
-        return this.getPhysicalUser(UserExist);
+        return await this.getPhysicalUser(UserExist);
       } else {
         HttpStatus.OK;
-        return this.getLegalUser(UserExist);
+        return await this.getLegalUser(UserExist);
       }
     } else {
       throw new HttpException(

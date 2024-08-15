@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Api completa para leilões.
+Uma estrutura Node.js progressiva para criar aplicativos do lado do servidor eficientes, confiáveis ​​e escaláveis.
 
 ## Installation
 
@@ -25,9 +25,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Doc
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please
+### Doc
 
 ## Features
 

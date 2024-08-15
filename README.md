@@ -30,15 +30,25 @@ $ npm run start:prod
 ## ROTAS AUTH
 
 ```bash
-# gera um token para um usuário cadastrado do banco de dados
-/auth/login --POST
+# gera um token para um usuário cadastrado no banco de dados
+POST --  /auth/login --POST
 ```
 
 ## ROTAS USERS
 
 ```bash
-# gera um token para um usuário cadastrado do banco de dados
-/users/ -- POST
-# gera um token para um usuário cadastrado do banco de dados
-/users/ -- GET
+# cadastrar um usuário no banco de dados (public)
+POST -- /users/
+# buscar todos usuários cadastrados no banco de dados (admin)
+GET -- /users/
+# busca um perfil de usuário com base no id pego pelo token (user & admin)
+GET -- /users/profile
+# busca um perfil de usuário com base no id passado pelo usuário (admin)
+GET -- /users/{id}
+# atualiza um usuário com base no id passado pelo usuário (admin)
+PATCH -- /users/{id}
+# atualiza um usuário com base no id passado pelo token (user & admin)
+PATCH -- /users/perfil
+# deleta um usuário com base no id passado pelo usuário (user & admin)
+DELETE -- /users/{id}
 ```

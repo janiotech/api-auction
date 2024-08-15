@@ -2,7 +2,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/3366/3366050.png" width="200" alt="Nest Logo" />
 </p>
 
-## Descrição
+## Description
 
 Uma estrutura Node.js progressiva para criar aplicativos do lado do servidor eficientes, confiáveis ​​e escaláveis.
 
@@ -12,7 +12,7 @@ Uma estrutura Node.js progressiva para criar aplicativos do lado do servidor efi
 $ npm install
 ```
 
-## Executando o aplicativo
+## Running the application
 
 ```bash
 # development
@@ -27,12 +27,16 @@ $ npm run start:prod
 
 ### Doc
 
-## Features
+## ROTAS AUTH
 
-- Users (Dados de usuários)
-- Address (Endereços de usuários)
-- Roles (Cargos para usuários)
-- Bids (Ofertas de usuários)
-- Auction_items (Itens dos leilões)
-- Categories (Categorias para itens)
-- Auctions (Leilões)
+```bash
+# gera um token para um usuário cadastrado do banco de dados
+/auth/login --POST
+```
+
+## ROTAS USERS
+
+```bash
+# gera um token para um usuário cadastrado do banco de dados
+/users/
+```

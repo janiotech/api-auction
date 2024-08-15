@@ -30,10 +30,16 @@ export class AddressesController {
     return this.addressesService.findAll();
   }
 
+  @Roles(Role.User, Role.Admin)
+  @Get('/profile')
+  findOnePro(@Request() req: any) {
+    return this.addressesService.findOneProfile(req.user.id);
+  }
+
   @Roles(Role.Admin)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.addressesService.findOne(id);
+    return this.addressesService.findOne(+id);
   }
 
   @Roles(Role.User, Role.Admin)

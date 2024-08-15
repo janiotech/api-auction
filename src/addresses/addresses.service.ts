@@ -50,9 +50,23 @@ export class AddressesService {
     return this.addressModel.findAll();
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const IdAlreadyExists = await this.addressModel.findOne({
       where: { id: id },
+    });
+    if (IdAlreadyExists) {
+      return IdAlreadyExists;
+    } else {
+      throw new HttpException(
+        'Esse id não existe no banco de dados',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+  }
+
+  async findOneProfile(id: string) {
+    const IdAlreadyExists = await this.addressModel.findOne({
+      where: { userId: id },
     });
     if (IdAlreadyExists) {
       return IdAlreadyExists;

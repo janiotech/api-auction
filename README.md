@@ -43,10 +43,10 @@ POST -- /users/
 # buscar todos usuários cadastrados no banco de dados (admin)
 GET -- /users/
 
-# busca um perfil de usuário com base no id pego pelo token (user & admin)
+# buscar um perfil de usuário com base no id pego pelo token (user & admin)
 GET -- /users/profile
 
-# busca um perfil de usuário com base no id passado pelo usuário (admin)
+# buscar um perfil de usuário com base no id passado pelo usuário (admin)
 GET -- /users/{id}
 
 # atualiza um usuário com base no id passado pelo usuário (admin)
@@ -60,3 +60,15 @@ DELETE -- /users/{id}
 ```
 
 ## ROTAS Addresses
+
+```bash
+# buscar todos address cadastrados no banco de dados (admin)
+GET -- /addresses
+
+# buscar o address de usuário com base no id passado pelo usuário (admin)
+GET -- /addresses/{id}
+
+# buscar o address do usuário com base no id passado pelo token (user & admin)
+GET -- /addresses/profile
+
+```

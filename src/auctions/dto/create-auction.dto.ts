@@ -1,6 +1,4 @@
 import { IsString, IsNumber } from 'class-validator';
-import { User } from '../../users/entities/user.entity';
-import { DateDataType } from 'sequelize';
 
 export class CreateAuctionDto {
   @IsString()

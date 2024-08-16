@@ -57,3 +57,13 @@
   "cep": "49160000",
   "userId": 1
 }
+
+
+-- Leilão
+
+{
+  "title": "LEILÃO DE VEICULOS",
+  "description": "leilão organizado pelo banco do brasil de carros de baixo a grande porte",
+  "start_time": "2024-08-15T18:10:00",
+  "end_time": "2024-08-16T18:10:00"
+}

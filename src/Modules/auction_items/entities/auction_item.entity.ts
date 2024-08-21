@@ -31,7 +31,7 @@ export class AuctionItem extends Model {
   photo_4: string;
 
   @Column
-  year: number;
+  year: string;
 
   @Column
   km: string;
@@ -61,10 +61,10 @@ export class AuctionItem extends Model {
   seller: string;
 
   @Column
-  starting_bid: Date;
+  starting_bid: string;
 
   @Column
-  current_bid: Date;
+  current_bid: string;
 
   @Column
   @ForeignKey(() => Category)

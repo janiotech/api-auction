@@ -8,5 +8,6 @@ import { Auction } from './entities/auction.entity';
   imports: [SequelizeModule.forFeature([Auction])],
   controllers: [AuctionsController],
   providers: [AuctionsService],
+  exports: [AuctionsService],
 })
 export class AuctionsModule {}

@@ -21,8 +21,8 @@ export class CreateAuctionItemDto {
   @IsString()
   photo_4: string;
 
-  @IsNumber()
-  year: number;
+  @IsString()
+  year: string;
 
   @IsString()
   km: string;
@@ -52,10 +52,10 @@ export class CreateAuctionItemDto {
   seller: string;
 
   @IsString()
-  starting_bid: Date;
+  starting_bid: string;
 
   @IsString()
-  current_bid: Date;
+  current_bid: string;
 
   @IsNumber()
   category_id: number;

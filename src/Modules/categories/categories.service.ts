@@ -54,6 +54,17 @@ export class CategoriesService {
     }
   }
 
+  async findOneLocal(id: number) {
+    const SearchCategoryById = await this.categoryModel.findOne({
+      where: { id: id },
+    });
+    if (SearchCategoryById) {
+      return SearchCategoryById;
+    } else {
+      return false;
+    }
+  }
+
   async update(id: number, updateCategoryDto: UpdateCategoryDto) {
     const SearchCategoryById = await this.categoryModel.findOne({
       where: { id: id },

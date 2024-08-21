@@ -61,6 +61,17 @@ export class AuctionsService {
     }
   }
 
+  async findOneLocal(id: number) {
+    const SearchActionById = await this.auctionModel.findOne({
+      where: { id: id },
+    });
+    if (SearchActionById) {
+      return SearchActionById;
+    } else {
+      return false;
+    }
+  }
+
   async update(id: number, updateAuctionDto: UpdateAuctionDto) {
     const SearchActionById = await this.auctionModel.findOne({
       where: { id: id },

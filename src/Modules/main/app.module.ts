@@ -11,6 +11,7 @@ import { AddressesModule } from '../addresses/addresses.module';
 import { AuctionsModule } from '../auctions/auctions.module';
 import { CategoriesModule } from '../categories/categories.module';
 import { AuctionItemsModule } from '../auction_items/auction_items.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { BidsModule } from '../bids/bids.module';
 //models
 import { User } from '../users/entities/user.entity';
@@ -20,6 +21,7 @@ import { Auction } from '../auctions/entities/auction.entity';
 import { Category } from '../categories/entities/category.entity';
 import { AuctionItem } from '../auction_items/entities/auction_item.entity';
 import { Bid } from '../bids/entities/bid.entity';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -37,6 +39,10 @@ import { Bid } from '../bids/entities/bid.entity';
       },
       autoLoadModels: true,
       synchronize: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join('src/uploads/'), // Serve arquivos da pasta 'uploads'
+      serveRoot: '/uploads', // Serve os arquivos no caminho '/uploads'
     }),
     AuthModule,
     UsersModule,
